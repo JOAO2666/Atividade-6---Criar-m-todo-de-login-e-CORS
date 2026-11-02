@@ -1,0 +1,150 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-11-02T11:40:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.8",
+  "resources": [
+    {
+      "_id": "wrk_exoapi_ativ6",
+      "parentId": null,
+      "modified": 1730547600000,
+      "created": 1730547600000,
+      "name": "ExoApi - Atividade 6 (Login JWT e Autorização)",
+      "description": "Coleção de testes do método de Login (JWT Bearer) e rotas protegidas com [Authorize] na Exo.WebApi",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "env_exoapi_ativ6_base",
+      "parentId": "wrk_exoapi_ativ6",
+      "modified": 1730547600000,
+      "created": 1730547600000,
+      "name": "Base Environment",
+      "data": {
+        "base_url": "https://localhost:7154/api/usuarios",
+        "jwt_token": "COLE_AQUI_O_TOKEN_GERADO_NO_LOGIN"
+      },
+      "_type": "environment"
+    },
+    {
+      "_id": "req_put_sem_token",
+      "parentId": "wrk_exoapi_ativ6",
+      "modified": 1730547600000,
+      "created": 1730547600000,
+      "url": "https://localhost:7154/api/usuarios/2",
+      "name": "1. Atualizar Usuário SEM Token (PUT -> 401 Unauthorized)",
+      "description": "Tenta atualizar o usuário 2 sem enviar token Bearer. Retorno esperado: 401 Unauthorized.",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"email\": \"email_tres@sp.br\",\n\t\"senha\": \"admin1234\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "_type": "request"
+    },
+    {
+      "_id": "req_delete_sem_token",
+      "parentId": "wrk_exoapi_ativ6",
+      "modified": 1730547600000,
+      "created": 1730547600000,
+      "url": "https://localhost:7154/api/usuarios/2",
+      "name": "2. Deletar Usuário SEM Token (DELETE -> 401 Unauthorized)",
+      "description": "Tenta deletar o usuário 2 sem enviar token Bearer. Retorno esperado: 401 Unauthorized.",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "_type": "request"
+    },
+    {
+      "_id": "req_login_post_token",
+      "parentId": "wrk_exoapi_ativ6",
+      "modified": 1730547600000,
+      "created": 1730547600000,
+      "url": "https://localhost:7154/api/usuarios",
+      "name": "3. Login - Gerar Token JWT (POST -> 200 OK)",
+      "description": "Autentica com email@sp.br e senha 1234 e retorna o token JWT válido por 30 minutos.",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"email\": \"email@sp.br\",\n\t\"senha\": \"1234\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "_type": "request"
+    },
+    {
+      "_id": "req_put_com_token",
+      "parentId": "wrk_exoapi_ativ6",
+      "modified": 1730547600000,
+      "created": 1730547600000,
+      "url": "https://localhost:7154/api/usuarios/2",
+      "name": "4. Atualizar Usuário COM Token Bearer (PUT -> 204 No Content)",
+      "description": "Atualiza os dados do usuário 2 enviando o Bearer Token no cabeçalho Authorization. Retorno esperado: 204 No Content.",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"email\": \"email_novo@sp.br\",\n\t\"senha\": \"aaaaa1234\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.jwt_token }}"
+      },
+      "_type": "request"
+    },
+    {
+      "_id": "req_get_usuarios_apos_put",
+      "parentId": "wrk_exoapi_ativ6",
+      "modified": 1730547600000,
+      "created": 1730547600000,
+      "url": "https://localhost:7154/api/usuarios/",
+      "name": "5. Listar Usuários (GET -> 200 OK)",
+      "description": "Lista os usuários cadastrados para conferir a alteração do usuário 2 e a exclusão subsequente.",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "_type": "request"
+    },
+    {
+      "_id": "req_delete_com_token",
+      "parentId": "wrk_exoapi_ativ6",
+      "modified": 1730547600000,
+      "created": 1730547600000,
+      "url": "https://localhost:7154/api/usuarios/2",
+      "name": "6. Deletar Usuário COM Token Bearer (DELETE -> 204 No Content)",
+      "description": "Deleta o usuário 2 enviando o Bearer Token no cabeçalho Authorization. Retorno esperado: 204 No Content.",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.jwt_token }}"
+      },
+      "_type": "request"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+## Visual Studio / .NET
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+.vs/
+.vscode/*
+!.vscode/settings.json
+*.user
+*.suo
+*.userosscache
+*.sln.docstates

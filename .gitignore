@@ -1,0 +1,15 @@
+# .NET and Visual Studio
+**/[Bb]in/
+**/[Oo]bj/
+**/[Ll]og/
+**/[Ll]ogs/
+.vs/
+.vscode/*
+!.vscode/settings.json
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Archives
+*.zip
